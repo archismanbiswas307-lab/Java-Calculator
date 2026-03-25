@@ -230,11 +230,12 @@ public class Calculator extends JFrame implements ActionListener {
 
         y += 70;
 
-        setVisible(true);
+
+        setUndecorated(false);
         setSize(370,550);
         setLocation(200,300);
-        setBackground(Color.GRAY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
     public static  void main(String[] args){
         new Calculator();
@@ -368,7 +369,7 @@ public class Calculator extends JFrame implements ActionListener {
                 } else {
                     output = String.format("%.10g", result);
                 }
-                outputfeild.setText(output.replaceAll("0",""));
+                outputfeild.setText(output.replaceAll("\\.0+$",""));
                 inputfeild.setText("");
                 equation = "";
                 if (action.getSource() == plus ||
@@ -407,7 +408,7 @@ public class Calculator extends JFrame implements ActionListener {
                 equation += "%";
                 output = "";
             } else {
-                equation += output.replaceAll("0","") + ((JButton) (action.getSource())).getText();
+                equation +=  output.replaceAll("\\.0+$","")+ ((JButton) (action.getSource())).getText();
                 output = "";
             }
             inputfeild.setText(equation);
